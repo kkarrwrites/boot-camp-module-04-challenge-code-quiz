@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Quiz - Quiz</title>
+    <link rel="stylesheet" href="resources/css/style.css" />
+    <script defer src="resources/javascript/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <p><a href="high-scores.html">View High Scores</a></p>
+      <p>Time: <span id="span__timer">0</span></p>
+    </header>
+    <main>
+      <section id="introduction">
+        <h1>Coding Quiz Challenge</h1>
+        <p>
+          Try to answer the following code-related questions within the time
+          limit. Keep in mind that incorrect answers will penalize your
+          score/time by ten seconds!
+        </p>
+        <button id="button__start-quiz">Start Quiz</button>
+      </section>
+      <section id="quiz" class="hidden">
+        <h1 id="question">Question</h1>
+        <div id="answers">
+          <button>Answer</button><br />
+          <button>Answer</button><br />
+          <button>Answer</button><br />
+          <button>Answer</button>
+        </div>
+        <h2 id="correct-incorrect">Correct!/Incorrect!</h2>
+      </section>
+      <section id="done" class="hidden">
+        <h1>All done!</h1>
+        <p>Your Final score is <span id="score">0</span>.</p>
+        <form>
+          <label for="initials">Enter Initials: </label><input type="text" />
+          <input type="submit" value="Submit" />
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

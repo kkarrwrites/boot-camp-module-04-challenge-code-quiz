@@ -1,0 +1,112 @@
+:root {
+  /* Buttons */
+  --button-background-color: hsl(300, 100%, 25%);
+  --button-hover-color: hsl(300, 30%, 67%);
+  --button-text-color: hsl(0, 0%, 100%);
+  /* Links */
+  --link-text-color: hsl(300, 100%, 25%);
+  --link-text-hover-color: hsl(300, 30%, 67%);
+  /* Text */
+  --correct-incorrect-text-color: hsl(0, 0%, 50%);
+  --high-score-board-background-color: hsl(300, 30%, 67%);
+  --text-color: hsl(0, 0%, 0%);
+  /* Fonts */
+  --font-family-sans-serif: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--text-color);
+  font-family: var(--font-family-sans-serif);
+}
+
+a {
+  color: var(--link-text-color);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-text-hover-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header p {
+  font-size: 16px;
+  margin: 25px;
+}
+
+main {
+  margin: 50px 25% 50px 25%;
+  text-align: center;
+}
+
+main h1,
+main p {
+  margin: 0 0 16px 0;
+}
+
+main h1 {
+  font-size: 32px;
+}
+
+main h2 {
+  color: var(--correct-incorrect-text-color);
+  font-size: 28px;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+main p {
+  font-size: 16px;
+}
+
+button,
+input[type="submit"] {
+  color: var(--button-text-color);
+  cursor: pointer;
+  background-color: var(--button-background-color);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+  padding: 5px 20px 5px 20px;
+  text-align: center;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: var(--button-hover-color);
+}
+
+.hidden {
+  display: none;
+}
+
+#done,
+#quiz {
+  text-align: left;
+}
+
+/* High Scores Page */
+
+.main__high-scores {
+  margin-top: 119px;
+}
