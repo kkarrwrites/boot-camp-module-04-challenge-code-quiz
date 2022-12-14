@@ -14,6 +14,7 @@
   --font-family-sans-serif: Arial, Helvetica, sans-serif;
 }
 
+/* Resets */
 html {
   font-size: 100%;
   box-sizing: border-box;
@@ -27,6 +28,7 @@ html {
   padding: 0;
 }
 
+/* General Styling */
 body {
   color: var(--text-color);
   font-family: var(--font-family-sans-serif);
@@ -42,6 +44,7 @@ a:hover {
   color: var(--link-text-hover-color);
 }
 
+/* View High Scores and Timer */
 header {
   display: flex;
   justify-content: space-between;
@@ -52,6 +55,7 @@ header p {
   margin: 25px;
 }
 
+/* Quiz */
 main {
   margin: 50px 25% 50px 25%;
   text-align: center;
@@ -77,6 +81,17 @@ main p {
   font-size: 16px;
 }
 
+#answers {
+  display: grid;
+  grid-auto-columns: max-content;
+}
+
+#done,
+#quiz {
+  text-align: left;
+}
+
+/* Buttons */
 button,
 input[type="submit"] {
   color: var(--button-text-color);
@@ -96,17 +111,12 @@ input[type="submit"]:hover {
   background-color: var(--button-hover-color);
 }
 
+/* Hidden */
 .hidden {
   display: none;
 }
 
-#done,
-#quiz {
-  text-align: left;
-}
-
 /* High Scores Page */
-
 .main__high-scores {
   margin-top: 119px;
 }
