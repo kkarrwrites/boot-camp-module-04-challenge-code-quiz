@@ -1,25 +1,3 @@
-// Element variables
-const countdownElement = document.querySelector("#span__timer");
-
-const introductionContainerElement = document.querySelector("#introduction");
-const startQuizButtonElement = document.querySelector("#button__start-quiz");
-
-const quizContainerElement = document.querySelector("#quiz");
-const questionContainerElement = document.querySelector("#question");
-const answersContainerElement = document.querySelector("#answers");
-
-const correctIncorrectText = document.querySelector("#correct-incorrect");
-
-const doneContainerElement = document.querySelector("#done");
-const scoreContainerElement = document.querySelector("#score");
-
-const highScoreForm = document.querySelector("#form");
-const highScoreInput = document.querySelector("#text-input");
-
-// Other variables
-let timeRemaining = 75;
-let currentQuestionIndex = 0;
-
 // Array of questions
 const questionsArray = [
   {
@@ -56,7 +34,19 @@ const questionsArray = [
   },
 ];
 
-// Acceptance criteria: When I click the start button, a timer starts and I am presented with a question.
+const answersContainerElement = document.querySelector("#answers");
+const correctIncorrectText = document.querySelector("#correct-incorrect");
+const countdownElement = document.querySelector("#span__timer");
+const doneContainerElement = document.querySelector("#done");
+const introductionContainerElement = document.querySelector("#introduction");
+const questionContainerElement = document.querySelector("#question");
+const quizContainerElement = document.querySelector("#quiz");
+const scoreContainerElement = document.querySelector("#score");
+const startQuizButtonElement = document.querySelector("#button__start-quiz");
+
+let currentQuestionIndex = 0;
+let timeRemaining = 75;
+
 startQuizButtonElement.addEventListener("click", startQuiz);
 
 function startQuiz() {
@@ -117,4 +107,53 @@ function endQuiz() {
   scoreContainerElement.innerHTML = timeRemaining;
 }
 
+/*
+
 // Acceptance Criteria: When the game is over, then I can save my initials and score.
+
+const formContainer = document.querySelector("#form");
+const initialsInput = document.querySelector("#initials");
+const submitButton = document.querySelector("#submit");
+const highScoresContainer = document.querySelector("#ul__high-scores");
+
+let userInitials = [];
+
+function renderScore() {
+  highScoresContainer.innerHTML = "";
+  for (let i = 0; i < userInitials.length; i++) {
+    let initials = userInitials[i];
+    let finalScore = timeRemaining;
+    let li = document.createElement("li");
+    li.textContent = userInitials.initials + " - " + finalScore;
+    li.setAttribute("data-index", i);
+    highScoresContainer.appendChild(li);
+  }
+}
+
+function init() {
+  var storedInitials = JSON.parse(localStorage.getItem("Initials"));
+  if (storedInitials !== null) {
+    userInitials = storedInitials;
+  }
+  renderScore();
+}
+
+function storeScore() {
+  localStorage.setItem("Initials", JSON.stringify(userInitials));
+}
+
+formContainer.addEventListener("submit", function (event) {
+  event.preventDefault();
+  var initialsText = initialsInput.value.trim();
+  if (initialsText === "") {
+    return;
+  }
+  userInitials.push(initialsText);
+  initialsInput.value = "";
+  storeScore();
+  renderScore();
+});
+
+init();
+
+*/

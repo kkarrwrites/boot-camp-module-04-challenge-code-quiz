@@ -119,4 +119,12 @@ input[type="submit"]:hover {
 /* High Scores Page */
 .main__high-scores {
   margin-top: 119px;
+  text-align: left;
+}
+
+#ul__high-scores li {
+  background-color: var(--high-score-board-background-color);
+  list-style: none;
+  margin: 0 0 16px 0;
+  padding: 5px 5px 5px 5px;
 }
