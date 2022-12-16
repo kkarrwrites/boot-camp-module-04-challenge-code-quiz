@@ -34,66 +34,6 @@ body {
   font-family: var(--font-family-sans-serif);
 }
 
-a,
-#view-high-scores {
-  color: var(--link-text-color);
-  font-size: 16px;
-  text-decoration: none;
-}
-
-a:hover,
-#view-high-scores:hover {
-  color: var(--link-text-hover-color);
-  cursor: pointer;
-}
-
-/* View High Scores and Timer */
-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-header p {
-  font-size: 16px;
-  margin: 25px;
-}
-
-/* Quiz */
-main {
-  margin: 50px 25% 50px 25%;
-  text-align: center;
-}
-
-main h1,
-main p {
-  margin: 0 0 16px 0;
-}
-
-main h1 {
-  font-size: 32px;
-}
-
-main h2 {
-  color: var(--correct-incorrect-text-color);
-  font-size: 28px;
-  font-style: italic;
-  font-weight: lighter;
-}
-
-main p {
-  font-size: 16px;
-}
-
-#answers {
-  display: grid;
-  grid-auto-columns: max-content;
-}
-
-#done,
-#quiz {
-  text-align: left;
-}
-
 /* Buttons */
 button,
 input[type="submit"] {
@@ -114,20 +54,79 @@ input[type="submit"]:hover {
   background-color: var(--button-hover-color);
 }
 
-/* Hidden */
-.hidden {
-  display: none;
+/* View High Scores and Timer */
+header {
+  display: flex;
+  justify-content: space-between;
 }
 
-/* High Scores Page */
-#high-scores-board {
+header p {
+  font-size: 16px;
+  margin: 25px;
+}
+
+#view-high-scores {
+  color: var(--link-text-color);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#view-high-scores:hover {
+  color: var(--link-text-hover-color);
+  cursor: pointer;
+}
+
+/* Main Section Styling */
+main {
+  margin: 50px 25% 50px 25%;
+  text-align: center;
+}
+
+main h1 {
+  font-size: 32px;
+}
+
+main h2 {
+  color: var(--correct-incorrect-text-color);
+  font-size: 28px;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+main p {
+  font-size: 16px;
+}
+
+main h1,
+main p {
+  margin: 0 0 16px 0;
+}
+
+/* Quiz Section and Done Section */
+#answers {
+  display: grid;
+  grid-auto-columns: max-content;
+}
+
+#done,
+#quiz {
+  text-align: left;
+}
+
+/* High Scores Section */
+#high-scores {
   margin-top: 119px;
   text-align: left;
 }
 
-#ul__high-scores li {
+#high-scores-container li {
   background-color: var(--high-score-board-background-color);
   list-style: none;
   margin: 0 0 16px 0;
   padding: 5px 5px 5px 5px;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
 }
