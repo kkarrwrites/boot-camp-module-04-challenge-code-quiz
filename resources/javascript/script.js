@@ -1,3 +1,42 @@
+// Variable Selectors
+// Quiz
+const answersContainerElement = document.querySelector("#answers");
+const correctIncorrectText = document.querySelector("#correct-incorrect");
+const countdownElement = document.querySelector("#time");
+const doneContainerElement = document.querySelector("#done");
+const introductionContainerElement = document.querySelector("#introduction");
+const questionContainerElement = document.querySelector("#question");
+const quizContainerElement = document.querySelector("#quiz");
+const scoreContainerElement = document.querySelector("#score");
+const startQuizButtonElement = document.querySelector("#button__start-quiz");
+// Store High Scores
+const clearScoresButtonElement = document.querySelector(
+  "#button__clear-high-scores"
+);
+const initialsInputElement = document.querySelector("#initials");
+const formElement = document.querySelector("#form");
+const goBackButtonElement = document.querySelector("#button__go-back");
+const highScoresContainerElement = document.querySelector(
+  "#high-scores-container"
+);
+const scoresContainerElement = document.querySelector("#high-scores");
+
+// Other Variables
+// Quiz
+let currentQuestionIndex = 0;
+let timeRemaining = 75;
+// Store High Scores
+let scoresArray;
+if (localStorage.getItem("scores")) {
+  scoresArray = JSON.parse(localStorage.getItem("scores"));
+} else {
+  scoresArray = [];
+}
+localStorage.setItem("scores", JSON.stringify(scoresArray));
+const data = JSON.parse(localStorage.getItem("scores"));
+// View High Scores
+const viewHighScoresLinkElement = document.querySelector("#view-high-scores");
+
 // Array of questions
 const questionsArray = [
   {
@@ -34,26 +73,22 @@ const questionsArray = [
   },
 ];
 
-const answersContainerElement = document.querySelector("#answers");
-const correctIncorrectText = document.querySelector("#correct-incorrect");
-const countdownElement = document.querySelector("#span__timer");
-const doneContainerElement = document.querySelector("#done");
-const introductionContainerElement = document.querySelector("#introduction");
-const questionContainerElement = document.querySelector("#question");
-const quizContainerElement = document.querySelector("#quiz");
-const scoreContainerElement = document.querySelector("#score");
-const startQuizButtonElement = document.querySelector("#button__start-quiz");
+// Adds click event to View High Scores link
+viewHighScoresLinkElement.addEventListener("click", function () {
+  scoresContainerElement.classList.remove("hidden");
+  introductionContainerElement.classList.add("hidden");
+  quizContainerElement.classList.add("hidden");
+  doneContainerElement.classList.add("hidden");
+});
 
-let currentQuestionIndex = 0;
-let timeRemaining = 75;
-
+// Adds click event to Start Quiz button
 startQuizButtonElement.addEventListener("click", startQuiz);
 
 function startQuiz() {
   introductionContainerElement.classList.add("hidden");
   quizContainerElement.classList.remove("hidden");
   startTimer();
-  showQuestion();
+  renderQuestion();
 }
 
 function startTimer() {
@@ -69,7 +104,7 @@ function startTimer() {
   }, 1000);
 }
 
-function showQuestion() {
+function renderQuestion() {
   const currentQuestion = questionsArray[currentQuestionIndex];
   questionContainerElement.textContent = currentQuestion.question;
   answersContainerElement.innerHTML = "";
@@ -98,7 +133,7 @@ function nextQuestion() {
   if (timeRemaining == 0 || currentQuestionIndex == questionsArray.length) {
     endQuiz();
   } else {
-    showQuestion();
+    renderQuestion();
   }
 }
 
@@ -108,46 +143,34 @@ function endQuiz() {
   scoreContainerElement.innerHTML = timeRemaining;
 }
 
-// Acceptance Criteria: When the game is over, then I can save my initials and score.
-const clearScoresButtonElement = document.querySelector(
-  "#button__clear-scores"
-);
-const initialsInputElement = document.querySelector("#initials");
-const formElement = document.querySelector("#form");
-const goBackButtonElement = document.querySelector("#button__go-back");
-const highScoresContainerElement = document.querySelector("#ul__high-scores");
-const scoresContainerElement = document.querySelector("#high-scores-board");
-
-let scoresArray;
-if (localStorage.getItem("scores")) {
-  scoresArray = JSON.parse(localStorage.getItem("scores"));
-} else {
-  scoresArray = [];
-}
-
-localStorage.setItem("scores", JSON.stringify(scoresArray));
-const data = JSON.parse(localStorage.getItem("scores"));
-
-function liMaker(text) {
+// Makes li Element
+function makeLi(text) {
   const li = document.createElement("li");
   li.textContent = text;
   highScoresContainerElement.appendChild(li);
 }
 
+// Acceptance Criteria: When the game is over, then I can save my initials and score.
 formElement.addEventListener("submit", function (event) {
   event.preventDefault();
   scoresArray.push(initialsInputElement.value + " - " + timeRemaining);
   localStorage.setItem("scores", JSON.stringify(scoresArray));
-  liMaker(initialsInputElement.value + " - " + timeRemaining);
+  makeLi(initialsInputElement.value + " - " + timeRemaining);
   initialsInputElement.value = "";
   doneContainerElement.classList.add("hidden");
   scoresContainerElement.classList.remove("hidden");
 });
 
 data.forEach((item) => {
-  liMaker(item);
+  makeLi(item);
 });
 
+// Adds click event to Go Back button
+goBackButtonElement.addEventListener("click", function () {
+  location.reload();
+});
+
+// Adds click event to Clear High Scores button
 clearScoresButtonElement.addEventListener("click", function () {
   localStorage.clear();
   while (highScoresContainerElement.firstChild) {
@@ -155,17 +178,4 @@ clearScoresButtonElement.addEventListener("click", function () {
       highScoresContainerElement.firstChild
     );
   }
-});
-
-goBackButtonElement.addEventListener("click", function () {
-  location.reload();
-});
-
-const viewHighScoresLinkElement = document.querySelector("#view-high-scores");
-
-viewHighScoresLinkElement.addEventListener("click", function () {
-  scoresContainerElement.classList.remove("hidden");
-  introductionContainerElement.classList.add("hidden");
-  quizContainerElement.classList.add("hidden");
-  doneContainerElement.classList.add("hidden");
 });
