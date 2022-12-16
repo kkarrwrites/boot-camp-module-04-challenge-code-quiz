@@ -86,11 +86,11 @@ function nextQuestion() {
   if (this.innerHTML === questionsArray[currentQuestionIndex].correct) {
     // this = button element; this.innerHTML = answer text
     correctIncorrectText.innerHTML = "Correct!";
-    timeRemaining += 15;
+    timeRemaining += 10;
   } else {
     correctIncorrectText.innerHTML = "Incorrect!";
     // Acceptance Criteria: When I answer a question incorrectly, time is subtracted from the clock.
-    timeRemaining -= 15;
+    timeRemaining -= 10;
   }
   // Acceptance Criteria: When I answer a question, I am presented with another question.
   currentQuestionIndex++;
