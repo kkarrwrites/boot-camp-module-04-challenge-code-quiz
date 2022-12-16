@@ -143,7 +143,7 @@ function endQuiz() {
   scoreContainerElement.innerHTML = timeRemaining;
 }
 
-// Makes li Element
+// Makes li Element for High Scores board
 function makeLi(text) {
   const li = document.createElement("li");
   li.textContent = text;
@@ -151,6 +151,7 @@ function makeLi(text) {
 }
 
 // Acceptance Criteria: When the game is over, then I can save my initials and score.
+// Adds submit event to the Form element
 formElement.addEventListener("submit", function (event) {
   event.preventDefault();
   scoresArray.push(initialsInputElement.value + " - " + timeRemaining);
