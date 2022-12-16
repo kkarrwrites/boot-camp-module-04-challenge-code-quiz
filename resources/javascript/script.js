@@ -86,6 +86,7 @@ function nextQuestion() {
   if (this.innerHTML === questionsArray[currentQuestionIndex].correct) {
     // this = button element; this.innerHTML = answer text
     correctIncorrectText.innerHTML = "Correct!";
+    timeRemaining += 15;
   } else {
     correctIncorrectText.innerHTML = "Incorrect!";
     // Acceptance Criteria: When I answer a question incorrectly, time is subtracted from the clock.
@@ -107,53 +108,64 @@ function endQuiz() {
   scoreContainerElement.innerHTML = timeRemaining;
 }
 
-/*
-
 // Acceptance Criteria: When the game is over, then I can save my initials and score.
+const clearScoresButtonElement = document.querySelector(
+  "#button__clear-scores"
+);
+const initialsInputElement = document.querySelector("#initials");
+const formElement = document.querySelector("#form");
+const goBackButtonElement = document.querySelector("#button__go-back");
+const highScoresContainerElement = document.querySelector("#ul__high-scores");
+const scoresContainerElement = document.querySelector("#high-scores-board");
 
-const formContainer = document.querySelector("#form");
-const initialsInput = document.querySelector("#initials");
-const submitButton = document.querySelector("#submit");
-const highScoresContainer = document.querySelector("#ul__high-scores");
-
-let userInitials = [];
-
-function renderScore() {
-  highScoresContainer.innerHTML = "";
-  for (let i = 0; i < userInitials.length; i++) {
-    let initials = userInitials[i];
-    let finalScore = timeRemaining;
-    let li = document.createElement("li");
-    li.textContent = userInitials.initials + " - " + finalScore;
-    li.setAttribute("data-index", i);
-    highScoresContainer.appendChild(li);
-  }
+let scoresArray;
+if (localStorage.getItem("scores")) {
+  scoresArray = JSON.parse(localStorage.getItem("scores"));
+} else {
+  scoresArray = [];
 }
 
-function init() {
-  var storedInitials = JSON.parse(localStorage.getItem("Initials"));
-  if (storedInitials !== null) {
-    userInitials = storedInitials;
-  }
-  renderScore();
+localStorage.setItem("scores", JSON.stringify(scoresArray));
+const data = JSON.parse(localStorage.getItem("scores"));
+
+function liMaker(text) {
+  const li = document.createElement("li");
+  li.textContent = text;
+  highScoresContainerElement.appendChild(li);
 }
 
-function storeScore() {
-  localStorage.setItem("Initials", JSON.stringify(userInitials));
-}
-
-formContainer.addEventListener("submit", function (event) {
+formElement.addEventListener("submit", function (event) {
   event.preventDefault();
-  var initialsText = initialsInput.value.trim();
-  if (initialsText === "") {
-    return;
-  }
-  userInitials.push(initialsText);
-  initialsInput.value = "";
-  storeScore();
-  renderScore();
+  scoresArray.push(initialsInputElement.value + " - " + timeRemaining);
+  localStorage.setItem("scores", JSON.stringify(scoresArray));
+  liMaker(initialsInputElement.value + " - " + timeRemaining);
+  initialsInputElement.value = "";
+  doneContainerElement.classList.add("hidden");
+  scoresContainerElement.classList.remove("hidden");
 });
 
-init();
+data.forEach((item) => {
+  liMaker(item);
+});
 
-*/
+clearScoresButtonElement.addEventListener("click", function () {
+  localStorage.clear();
+  while (highScoresContainerElement.firstChild) {
+    highScoresContainerElement.removeChild(
+      highScoresContainerElement.firstChild
+    );
+  }
+});
+
+goBackButtonElement.addEventListener("click", function () {
+  location.reload();
+});
+
+const viewHighScoresLinkElement = document.querySelector("#view-high-scores");
+
+viewHighScoresLinkElement.addEventListener("click", function () {
+  scoresContainerElement.classList.remove("hidden");
+  introductionContainerElement.classList.add("hidden");
+  quizContainerElement.classList.add("hidden");
+  doneContainerElement.classList.add("hidden");
+});
