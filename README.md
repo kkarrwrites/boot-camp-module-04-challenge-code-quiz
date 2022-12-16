@@ -12,6 +12,8 @@ One of the main challenges I encountered was understanding how the Local Storage
 
 I also spent a lot of time going over the code in the activities we were given in class during Module 4: Web APIs. The code regarding the HTML DOM API set timer method was very useful. I ended up studying it a lot, going through it step-by-step, and altering some of it (particularly the code from 09-Ins_Timers-Intervals, 10-Stu_Timers-Intervals, 25-Ins_Local-Storage-Todos, and 26-Stu_Local-Storage-Todos) to work within my own code.
 
+**Note:** This project was tested in Google Chrome (Version 108.0.5359.125) only. Cookies must be enabled for this project to function. In Google Chrome, be sure to select: `Settings > Privacy and security > Cookies and other site data > General settings > Allow all cookies.`
+
 ## Technologies
 
 HTML, CSS, JavaScript, HTML DOM API, Web Storage API, Git, GitHub, VS Code, Chrome
