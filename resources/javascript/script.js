@@ -1,3 +1,5 @@
+"use strict";
+
 // Variable Selectors
 // Quiz
 const answersContainerElement = document.querySelector("#answers");
